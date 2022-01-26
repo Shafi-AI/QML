@@ -6,21 +6,18 @@ Ensemble classification with Forest and Qiskit devices
     :property="og:description": We demonstrate how two QPUs can be
         combined in parallel to help solve a machine learning classification problem,
         using PyTorch and PennyLane.
-    :property="og:image": https://pennylane.ai/qml/_images/ensemble_diagram.png
 
 .. related
 
-   tutorial_variational_classifier Variational quantum classifier
+*Authors: Shafi, Dr.Geethanjali.*
 
-*Author: PennyLane dev team. Last updated: 6 Aug 2020.*
-
-This tutorial outlines how two QPUs can be combined in parallel to help solve a machine learning
+This experiment outlines how two QPUs can be combined in parallel to help solve a machine learning
 classification problem.
 
 We use the ``forest.qvm`` device to simulate one QPU and the ``qiskit.aer`` device to
 simulate another. Each QPU makes an independent prediction, and an ensemble model is
 formed by choosing the prediction of the most confident QPU. The iris dataset is used in this
-tutorial, consisting of three classes of iris flower. Using a pre-trained model and the PyTorch
+experiment, consisting of three classes of iris flower. Using a pre-trained model and the PyTorch
 interface, we'll see that ensembling allows the QPUs to specialize towards
 different classes.
 
@@ -39,7 +36,7 @@ from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
 
 ##############################################################################
-# This tutorial requires the ``pennylane-forest`` and ``pennylane-qiskit`` packages, which can be
+# This experiment requires the ``pennylane-forest`` and ``pennylane-qiskit`` packages, which can be
 # installed by following the instructions `here <https://pennylane.ai/install.html>`__. We also
 # make use of the `PyTorch interface <https://pennylane.readthedocs.io/en/stable/introduction
 # /interfaces.html>`_, which can be installed from `here
@@ -80,8 +77,7 @@ x_max = np.max(x, axis=0)
 x = 2 * np.pi * (x - x_min) / (x_max - x_min) - np.pi
 
 ##############################################################################
-# The data is split between a training and a test set. This tutorial uses a model that is
-# pre-trained on the training set.
+# The data is split between a training and a test set.
 
 
 split = 125
@@ -154,9 +150,6 @@ plot_points(x_train, y_train, x_test, y_test)
 # (i.e., the class with the highest overall probability over all QPUs) and uses that to make a
 # prediction.
 #
-# .. figure:: /demonstrations/ensemble_multi_qpu/ensemble_diagram.png
-#    :width: 50%
-#    :align: center
 #
 # Quantum nodes
 # ^^^^^^^^^^^^^
@@ -183,15 +176,12 @@ devs = [dev0, dev1]
 #
 #    .. code-block:: bash
 #
-#        docker run -d -p 5555:5555 rigetti/quilc -R -p 5555
-#        docker run -d -p 5000:5000 rigetti/qvm -S -p 5000
 #
 # The circuits for both QPUs are shown in the figure below:
 #
 # .. figure:: /demonstrations/ensemble_multi_qpu/diagram_circuits.png
 #    :width: 50%
 #    :align: center
-
 
 def circuit0(params, x=None):
     for i in range(n_wires):
@@ -458,7 +448,7 @@ plot_points_prediction(x, y, np.append(p_train_1, p_test_1), "QPU1")  # QPU 1
 # at predicting class 1, while QPU0 is focused on classes 0 and 2. By combining together,
 # the resultant ensemble performs better.
 #
-# This tutorial shows how QPUs can work in parallel to realize a performance advantage. Check out
+# This experiment shows how QPUs can work in parallel to realize a performance advantage. Check out
 # our :doc:`tutorial_vqe_parallel` tutorial to see how multiple QPUs can be
 # evaluated asynchronously to speed up calculating the potential energy surface of molecular
 # hydrogen!
